@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banquise</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      function setTheme(name) {
+        console.log(name);
+        localStorage.setItem("theme", name);
+        document.documentElement.className = name;
+      }
+
+      function toggleTheme() {
+        if (localStorage.getItem("theme") === "light") {
+          setTheme("dark");
+        } else {
+          setTheme("light");
+        }
+      }
+
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (
+          !("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+        )
+      ) {
+        setTheme("dark");
+      } else {
+        setTheme("light");
+      }
+    </script>
+  </head>
+
+  <body onclick="toggleTheme()">
+    <main>
+
+      <div class="game">
+        <div class="ground"></div>
+        <div id="sky"></div>
+        <div id="bear"></div>
+        <div id="hurdle"></div>
+        <div id="stuff1"></div>
+        <div id="stuff2"></div>
+        <div id="stuff3"></div>
+      </div>
+      
+      <script src="game.js"></script>
+
+    </main>
+  </body>
+</html>
